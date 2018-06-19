@@ -1,0 +1,104 @@
+<!-- CAUTION: This is a professionally uglified proof-of-concept by karamble. Base for discussion, let me know your thoughts. -->
+{{define "home"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Testnet Faucet for coolsnady/hxd">
+    <meta name="author" content="coolsnady/hxd Developer">
+    <link rel="icon" href="./images/favicon/favicon.ico">
+    <title>coolsnady/hxd Testnet Faucet</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <!--  Custom favicon  -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png?v=fi5jKKtbwv">
+    <link rel="icon" type="image/png" href="./images/favicon/favicon-32x32.png?v=fi5jKKtbwv" sizes="32x32">
+    <link rel="icon" type="image/png" href="./images/favicon/favicon-16x16.png?v=fi5jKKtbwv" sizes="16x16">
+    <link rel="manifest" href="./images/favicon/manifest.json?v=fi5jKKtbwv">
+    <link rel="mask-icon" href="./images/favicon/safari-pinned-tab.svg?v=fi5jKKtbwv" color="#2973ff">
+    <link rel="shortcut icon" href="./images/favicon/favicon.ico?v=fi5jKKtbwv">
+    <meta name="apple-mobile-web-app-title" content="coolsnady/hxd - decentralized credits">
+    <meta name="application-name" content="coolsnady/hxd - decentralized credits">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="/js/Chart.min.js"></script>
+  </head>
+  <body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <svg class="svg-logo">
+              <use xlink:href="/images/sprites.svg#svg-coolsnady/hxd-logo" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <br />
+      <br />
+      <br />
+      <h1>coolsnady/hxd Testnet Faucet</h1>
+      <!-- INTRODUCTION TEXT -->
+      <div class="row">
+
+        <div class="col-md-6">
+          <p>
+            Welcome to the coolsnady/hxd Testnet Faucet. The faucet will send {{.Amount}}HXD every {{.Limit}} seconds.  If you need more than this, please contact ay-p, davecgh, dhill, jolan, or jrick through one of the communication methods listed on the <a href="https://coolsnady/hxd.org/">coolsnady/hxd website</a>.
+          </p>
+	        <p>
+	          <a href="https://hardforkdemo.coolsnady/hxd.org" target="_blank" class="btn-sm btn-info">&rarr; Visit the Hardfork Monitor</a>
+	        </p>
+        </div>
+
+	      <div class="col-md-6">
+        	<!-- ERROR / SUCCESS OUTPUT -->
+          {{if .Error}}
+          <div class="alert alert-danger">
+            {{.Error}}
+          </div>
+          {{end}}
+          {{if .Success}}
+          <div class="alert alert-success">
+            <p>Success! Transaction {{.Success}} has been sent.  You may see it on <a href="https://testnet.dcrdata.org/explorer/tx/{{.Success}}">HXD Explore</a> or <a href="https://testnet.coolsnady/hxd.org/tx/{{.Success}}">Insight</a>.</p>
+          </div>
+          {{end}}
+	        <!-- FORM BEGINS HERE -->
+          <form action="/requestfaucet" class="form-horizontal" method="post">
+	          <div class="form-group">
+              <input class="form-control input-md" type="text" name="address" placeholder="Address" required>
+              <input type="hidden" name="amount">
+              <input type="hidden" name="overridetoken">
+	          </div>
+	          <div class="form-group">
+              <button class="btn btn-primary" type="submit">Send</button>
+	          </div>
+          </form>
+        </div><!-- /col-md-6-->
+      </div><!-- /row -->
+      <div class="row">
+        <div class="col-md-12">
+          <p class="text-center">Please send any unused Testnet coins back to the faucet wallet: {{.Address}}<br>
+          Balance left in default account: {{.Balance}}HXD<br>
+          Have sent {{.SentToday}}HXD today. Daily limit {{.DailyLimit}}HXD.<br>
+          The source code is available on <a href="https://github.com/coolsnady/hxd/testnetfaucet">GitHub</a>.</p>
+        </div>
+      </div>
+    </div> <!-- /container -->
+  </body>
+</html>
+{{end}}
