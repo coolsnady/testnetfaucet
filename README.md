@@ -1,23 +1,23 @@
 # testnetfaucet
 
 testnetfaucet is a simple web app that sends a configurable amount of testnet
-coolsnady/hxd via an rpcclient connection to an instance of hxwallet.
+coolsnady/hcd via an hcrpcclient connection to an instance of hcwallet.
 
 ## Installation
 
 ## Developing
 
 ``` bash
-git clone https://github.com/coolsnady/hxd/testnetfaucet.git
+git clone https://github.com/coolsnady/hcd/testnetfaucet.git
 cd testnetfaucet
 dep ensure
 go install
 ```
 
-Start hxwallet with the following options.  
+Start hcwallet with the following options.  
 
 ```bash
-hxwallet --testnet -u USER -P PASSWORD --rpclisten=127.0.0.1:19111 --rpccert=$HOME/.hxwallet/rpc.cert
+hcwallet --testnet -u USER -P PASSWORD --rpclisten=127.0.0.1:19111 --rpccert=$HOME/.hcwallet/rpc.cert
 ```
 
 Configure and start testnetfaucet
@@ -32,15 +32,15 @@ testnetfaucet
 
 If you have any further questions you can find us at:
 
-- irc.freenode.net (channel #coolsnady/hxd)
-- [webchat](https://webchat.freenode.net/?channels=coolsnady/hxd)
-- forum.coolsnady/hxd.org
-- coolsnady/hxd.slack.com
+- irc.freenode.net (channel #coolsnady/hcd)
+- [webchat](https://webchat.freenode.net/?channels=coolsnady/hcd)
+- forum.coolsnady/hcd.org
+- coolsnady/hcd.slack.com
 
 ## Issue Tracker
 
 The
-[integrated github issue tracker](https://github.com/coolsnady/hxd/testnetfaucet/issues)
+[integrated github issue tracker](https://github.com/coolsnady/hcd/testnetfaucet/issues)
 is used for this project.
 
 ## License
