@@ -1,5 +1,5 @@
 // Copyright (c) 2013-2014 The btcsuite developers
-// Copyright (c) 2015-2016 The coolsnady/hxd developers
+// Copyright (c) 2015-2016 The coolsnady/hcd developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -16,7 +16,7 @@ import (
 	"strings"
 
 	flags "github.com/btcsuite/go-flags"
-	"github.com/coolsnady/hxd/dcrutil"
+	"github.com/coolsnady/hcutil"
 )
 
 const (
@@ -30,13 +30,13 @@ const (
 	defaultListen                = ":8001"
 	defaultPublicPath            = "public"
 	defaultTemplatePath          = "views"
-	defaultWallertCert           = "~/.hxwallet/rpc.cert"
+	defaultWallertCert           = "~/.hcwallet/rpc.cert"
 	defaultWithdrawalAmount      = 2
 	defaultWithdrawalTimeSeconds = 30
 )
 
 var (
-	testnetFaucetHomeDir = dcrutil.AppDataDir("testnetfaucet", false)
+	testnetFaucetHomeDir = hcutil.AppDataDir("testnetfaucet", false)
 	defaultConfigFile    = filepath.Join(testnetFaucetHomeDir, defaultConfigFilename)
 	defaultDataDir       = filepath.Join(testnetFaucetHomeDir, defaultDataDirname)
 	defaultLogDir        = filepath.Join(testnetFaucetHomeDir, defaultLogDirname)
@@ -47,7 +47,7 @@ var (
 // to parse and execute service commands specified via the -s flag.
 var runServiceCommand func(string) error
 
-// config defines the configuration options for hxd.
+// config defines the configuration options for hcd.
 //
 // See loadConfig for details on the configuration load process.
 type config struct {

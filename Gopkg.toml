@@ -1,4 +1,12 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/coolsnady/hxd"
+  name = "github.com/coolsnady/hcd"
+  
+[[constraint]]
+  branch = "master"
+  name = "github.com/coolsnady/hcrpcclient"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/coolsnady/hcutil"

@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The coolsnady/hxd developers
+// Copyright (c) 2017 The coolsnady/hcd developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -18,8 +18,8 @@ import (
 
 	"net"
 
-	"github.com/coolsnady/hxd/dcrutil"
-	"github.com/coolsnady/hxd/rpcclient"
+	"github.com/coolsnady/hcutil"
+	"github.com/coolsnady/hcrpcclient"
 )
 
 var (
@@ -33,7 +33,7 @@ var lastBalance float64
 var transactionLimit float64
 
 // Daemon Params to use
-var dcrwClient *rpcclient.Client
+var dcrwClient *hcrpcclient.Client
 
 // Map of received IP requests for funds.
 var requestAmounts map[int64]float64
@@ -137,7 +137,7 @@ func requestFunds(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Decode address and amount and send transaction.
-	address, err := dcrutil.DecodeAddress(addressInput)
+	address, err := hcutil.DecodeAddress(addressInput)
 	if err != nil {
 		log.Errorf("ip %v submitted bad address %v", hostIP, addressInput)
 		sendReply(w, r, tmpl, testnetFaucetInformation, err)
@@ -151,7 +151,7 @@ func requestFunds(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	dcramount, err := dcrutil.NewAmount(amount)
+	dcramount, err := hcutil.NewAmount(amount)
 	if err != nil {
 		sendReply(w, r, tmpl, testnetFaucetInformation, err)
 		return
@@ -207,14 +207,14 @@ func main() {
 
 	dcrwCerts, err := ioutil.ReadFile(cfg.WalletCert)
 	if err != nil {
-		log.Errorf("Failed to read hxd cert file at %s: %s", cfg.WalletCert,
+		log.Errorf("Failed to read hcd cert file at %s: %s", cfg.WalletCert,
 			err.Error())
 		os.Exit(1)
 	}
-	log.Infof("Attempting to connect to hxd RPC %s as user %s "+
+	log.Infof("Attempting to connect to hcd RPC %s as user %s "+
 		"using certificate located in %s",
 		cfg.WalletHost, cfg.WalletUser, cfg.WalletCert)
-	connCfgDaemon := &rpcclient.ConnConfig{
+	connCfgDaemon := &hcrpcclient.ConnConfig{
 		Host:         cfg.WalletHost,
 		Endpoint:     "ws",
 		User:         cfg.WalletUser,
@@ -222,9 +222,9 @@ func main() {
 		Certificates: dcrwCerts,
 		DisableTLS:   false,
 	}
-	dcrwClient, err = rpcclient.New(connCfgDaemon, nil)
+	dcrwClient, err = hcrpcclient.New(connCfgDaemon, nil)
 	if err != nil {
-		log.Errorf("Failed to start hxd rpcclient: %s", err.Error())
+		log.Errorf("Failed to start hcd hcrpcclient: %s", err.Error())
 		os.Exit(1)
 	}
 	updateBalance(dcrwClient)
@@ -286,7 +286,7 @@ func getClientIP(r *http.Request) (string, error) {
 	return xRealIP, nil
 }
 
-func updateBalance(c *rpcclient.Client) {
+func updateBalance(c *hcrpcclient.Client) {
 	// calculate balance
 	gbr, err := c.GetBalance("default")
 	if err != nil {
