@@ -242,6 +242,7 @@ func main() {
 	http.Handle("/fonts/", http.StripPrefix("/fonts/", http.FileServer(http.Dir("public/fonts/"))))
 	http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("public/images/"))))
 	http.HandleFunc("/", requestFunds)
+	log.Infof("Start to listen on : %s",cfg.Listen)
 	err = http.ListenAndServe(cfg.Listen, nil)
 	if err != nil {
 		log.Errorf("Failed to bind http server: %s", err.Error())
