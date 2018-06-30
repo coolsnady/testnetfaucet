@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "name": "Hcd",
+=======
+    "name": "coolsnady/hcd",
+>>>>>>> 410d6349ad8833db75baaa9cdad3c1ca32b48b04
     "icons": [
         {
             "src": "/images/favicon/android-chrome-192x192.png?v=fi5jKKtbwv",
