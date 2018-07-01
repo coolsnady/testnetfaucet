@@ -103,7 +103,7 @@ func requestFunds(w http.ResponseWriter, r *http.Request) {
 			coolDownTime := nextAllowedRequest - time.Now().Unix()
 
 			if coolDownTime >= 0 {
-				err = fmt.Errorf("You may only withdraw %vHXD every "+
+				err = fmt.Errorf("You may only withdraw %v HC every "+
 					"%v seconds.  Please wait another %v seconds.",
 					cfg.WithdrawalAmount, cfg.WithdrawalTimeLimit, coolDownTime)
 				sendReply(w, r, tmpl, testnetFaucetInformation, err)
