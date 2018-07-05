@@ -1,4 +1,5 @@
-// Copyright (c) 2017 The coolsnady/hcd developers
+// Copyright (c) 2017 Decred developers
+// Copyright (c) 2018-2020 The Hcd developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -18,8 +19,8 @@ import (
 
 	"net"
 
-	"github.com/coolsnady/hcutil"
 	"github.com/coolsnady/hcrpcclient"
+	"github.com/coolsnady/hcutil"
 )
 
 var (
@@ -242,7 +243,7 @@ func main() {
 	http.Handle("/fonts/", http.StripPrefix("/fonts/", http.FileServer(http.Dir("public/fonts/"))))
 	http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("public/images/"))))
 	http.HandleFunc("/", requestFunds)
-	log.Infof("Start to listen on : %s",cfg.Listen)
+	log.Infof("Start to listen on : %s", cfg.Listen)
 	err = http.ListenAndServe(cfg.Listen, nil)
 	if err != nil {
 		log.Errorf("Failed to bind http server: %s", err.Error())
