@@ -1,12 +1,12 @@
 
 [[constraint]]
-  branch = "master"
+  branch = "v0.1.0"
   name = "github.com/coolsnady/hcd"
   
 [[constraint]]
-  branch = "master"
+  branch = "v0.1.0"
   name = "github.com/coolsnady/hcrpcclient"
 
 [[constraint]]
-  branch = "master"
+  branch = "v0.1.0"
   name = "github.com/coolsnady/hcutil"
